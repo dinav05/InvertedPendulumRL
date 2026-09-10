@@ -28,7 +28,7 @@ The first PPO agent is already capable of balancing the pendulum for the full 10
 
 The physical state is
 
-\[
+$$
 s =
 \begin{bmatrix}
 x \\
@@ -36,7 +36,7 @@ x \\
 \dot{x} \\
 \dot{\theta}
 \end{bmatrix}
-\]
+$$
 
 with the following convention:
 
@@ -47,31 +47,31 @@ with the following convention:
 
 The nonlinear dynamics are derived from
 
-\[
+$$
 \mathcal{L} = T - V
-\]
+$$
 
 using the Euler-Lagrange equations.
 
 The resulting continuous-time system is represented as
 
-\[
+$$
 \dot{s} = f(s, F)
-\]
+$$
 
 and integrated numerically using fourth-order Runge-Kutta (RK4).
 
 The physical model also supports viscous damping:
 
-\[
+$$
 F_{\text{friction}} = -b\dot{x}
-\]
+$$
 
 for the cart and
 
-\[
+$$
 \tau_{\text{friction}} = -c\dot{\theta}
-\]
+$$
 
 for the pendulum pivot.
 
@@ -85,7 +85,7 @@ The RL environment is implemented using Gymnasium.
 
 The internal physical angle is not passed directly to the agent. Instead, the observation is
 
-\[
+$$
 o =
 \begin{bmatrix}
 x \\
@@ -94,7 +94,7 @@ x \\
 \cos(\theta) \\
 \dot{\theta}
 \end{bmatrix}
-\]
+$$
 
 Using `sin(theta)` and `cos(theta)` avoids the discontinuity between angles such as `0` and `2π`.
 
@@ -102,21 +102,21 @@ Using `sin(theta)` and `cos(theta)` avoids the discontinuity between angles such
 
 The agent outputs one continuous action
 
-\[
+$$
 a \in [-1, 1]
-\]
+$$
 
 which is mapped to force using
 
-\[
-F = a F_{\max}
-\]
+$$
+F = aF_{\max}
+$$
 
 The current default is
 
-\[
-F_{\max} = 20\,N.
-\]
+$$
+F_{\max} = 20\,\mathrm{N}
+$$
 
 ### Episode
 
@@ -131,9 +131,9 @@ An episode is truncated after the maximum episode duration.
 
 The current training setup uses 10-second episodes with a simulation timestep of
 
-\[
-dt = 0.01\,s.
-\]
+$$
+dt = 0.01\,\mathrm{s}
+$$
 
 ---
 
@@ -143,14 +143,14 @@ The initial reward function prioritizes keeping the pendulum upright while mildl
 
 Conceptually:
 
-\[
+$$
 r =
 \cos(\theta)
 -
 \lambda_x x^2
 -
 \lambda_u a^2
-\]
+$$
 
 The first trained PPO policy successfully balances the pendulum, but exhibits a small steady-state cart position offset.
 
@@ -333,7 +333,7 @@ The final goal is to compare classical and reinforcement-learning-based control 
 
 The purpose of this project is not only to train an RL agent, but to build and understand the complete pipeline:
 
-\[
+$$
 \text{mechanical modelling}
 \rightarrow
 \text{nonlinear state-space dynamics}
@@ -343,6 +343,6 @@ The purpose of this project is not only to train an RL agent, but to build and u
 \text{simulation}
 \rightarrow
 \text{reinforcement learning}
-\]
+$$
 
 Rather than relying on an existing CartPole simulator, the physical model and visualization are implemented from scratch.
