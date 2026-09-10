@@ -1,5 +1,15 @@
-.venv/
+# Python
 __pycache__/
+*.pyc
+
+# Virtual environments
+.venv/
+venv/
+
+# IDE
+.vscode/
 .idea/
-models/
-logs/
+
+# OS
+.DS_Store
+Thumbs.db
