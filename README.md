@@ -144,12 +144,7 @@ The initial reward function prioritizes keeping the pendulum upright while mildl
 Conceptually:
 
 $$
-r =
-\cos(\theta)
--
-\lambda_x x^2
--
-\lambda_u a^2
+r = \cos(\theta) - \lambda_x x^2 - \lambda_u a^2
 $$
 
 The first trained PPO policy successfully balances the pendulum, but exhibits a small steady-state cart position offset.
