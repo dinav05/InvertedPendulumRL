@@ -1,15 +1,31 @@
-# Python
-__pycache__/
-*.pyc
-
-# Virtual environments
+# Virtual environment
 .venv/
-venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
 
 # IDE
-.vscode/
 .idea/
+.vscode/
 
-# OS
+# Trained models / checkpoints
+models/
+checkpoints/
+*.zip
+
+# Training logs
+logs/
+runs/
+
+# TensorBoard event files
+events.out.tfevents.*
+
+# Generated videos / media
+videos/
+*.mp4
+*.gif
+
+# OS files
 .DS_Store
 Thumbs.db
